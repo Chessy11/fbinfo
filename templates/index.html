@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 style='color: #FFA07A;'>Download ALL reactions from a Facebook post</h2>
+  <form method="post" action="{{ url_for('download_csv') }}" style="margin: 0 auto; width: 300px;">
+    <label for="post_url">Enter Facebook post URL</label>
+  </br>
+</br>
+    <input type="text" name="post_url" id="post_url" style="width: 100%;">
+</br>
+</br>
+    <input type="submit" value="Download CSV">
+  </form>
+{% endblock %}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include 'navbar.html' %}
+
+  <title>{% block title %}{% endblock %}</title>
+  <style>
+    body {
+      background-color: #3b5998;
+      color: white;
+      text-align: center;
+      font-family: sans-serif;
+      margin-top: 300px!important;
+    }
+    nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: #f6f7f9;
+        /* Add other styles for the navbar, such as the logo and menu items */
+      }
+      
+      .nav-container {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+        margin-top: -20px;
+
+      }
+      
+      img {
+        width: 80;
+        height: 80px;
+      }
+      
+      ul {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      
+      li {
+        margin: 0 10px;
+      }
+      
+      a {
+        color: #fff;
+        font-size: 16px;
+        font-family: sans-serif;
+        text-decoration: none;
+        background-color: #FFA07A;
+      }
+      
+      a:hover {
+        background-color: white;
+      }
+      .about-us {
+        background-color: #FFA07A;
+        color: #3b5998;
+        padding: 20px;
+      }
+
+      
+  </style>
+
+</head>
+<body>
+  {% block content %}{% endblock %}
+</body>
+</html>

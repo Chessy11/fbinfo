@@ -1,0 +1,9 @@
+# .gitignore
+
+#ignore geckodriver.log
+
+geckodriver.log
+extractor.ipynb
+geckodriver
+wrapper.ipynb
+.env
