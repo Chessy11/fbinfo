@@ -7,30 +7,33 @@ import csv
 #import send_file
 from flask import send_file
 from flask import make_response
+from dotenv import load_dotenv
 #import generate_csv_data
 import os
 
 app = Flask(__name__)
 
+load_dotenv()
 
 #  scrape posts reactions and reactors from a page
 #set cookies to your browser cookies
 # from util import Config
 
 #get string username and password from .env file
-
 username = os.environ.get("username")
-print(username)
 password = os.environ.get("password")
+print(username)
 print(password)
 
 # for post in get_posts(credentials=(username, password), post_urls=["https://www.facebook.com/photo/?fbid=547120087428336&set=a.308441684629512"],    
-#                       options={"comments": True, "reactors": True, 
-#                       "reactions": True, "sharers": True, "timeout": 30, "shares": True, }):
+#                       options={ "reactors": 3000, 
+#                       "reactions": 3000, "timeout": 30, "progress": True,}):
 #       json_data = json.dumps(post, indent=4, sort_keys=True, default=str)
 #       #save to file and read non english values 
-#       with open('vs.json', 'a', encoding='utf-8') as f:
+#       with open('post.json', 'a', encoding='utf-8') as f:
 #             f.write(json_data)
+            
+            
 import pandas as pd
 @app.route('/')
 def index():
@@ -87,6 +90,7 @@ def download_reactions_by_type():
             print(f'Reactors: {reactors}')
       # Filter the reactors by the selected reaction type
             reactors = [reactor for reactor in reactors if reactor['type'] == reaction_type]
+            print(f'Reactors_Type: {reactors}')
             # Generate the CSV data
             csv_data = generate_csv_data(reactors)
             # Create a temporary file to store the CSV data
@@ -95,7 +99,7 @@ def download_reactions_by_type():
             tmp.flush()
             # Return the CSV file as an attachment
             response = make_response(send_file(tmp.name, as_attachment=True))
-            response.headers['Content-Disposition'] = 'attachment; filename=reactors.csv'
+            response.headers['Content-Disposition'] = 'attachment; filename=reactors_type.csv'
             return response
       
 
