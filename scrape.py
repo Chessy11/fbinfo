@@ -8,22 +8,21 @@ import csv
 from flask import send_file
 from flask import make_response
 #import generate_csv_data
-
+import os
 
 app = Flask(__name__)
 
 
 #  scrape posts reactions and reactors from a page
 #set cookies to your browser cookies
-from util import Config
+# from util import Config
 
 #get string username and password from .env file
 
-username = Config.username
+username = os.environ.get("username")
 print(username)
-password = Config.password
-
-
+password = os.environ.get("password")
+print(password)
 
 # for post in get_posts(credentials=(username, password), post_urls=["https://www.facebook.com/photo/?fbid=547120087428336&set=a.308441684629512"],    
 #                       options={"comments": True, "reactors": True, 
