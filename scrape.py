@@ -22,7 +22,9 @@ load_dotenv()
 #get string username and password from .env file
 username = 'zurabsx'
 password = 'potoli111'
+# print username path
 print(username)
+
 print(password)
 
 # for post in get_posts(credentials=(username, password), post_urls=["https://www.facebook.com/photo/?fbid=547120087428336&set=a.308441684629512"],    
