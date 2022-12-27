@@ -20,8 +20,8 @@ load_dotenv()
 # from util import Config
 
 #get string username and password from .env file
-username =  os.getenv('USERNAME')
-password = os.getenv('PASSWORD')
+username = 'zurabsx'
+password = 'potoli111'
 print(username)
 print(password)
 
