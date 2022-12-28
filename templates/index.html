@@ -1,14 +1,57 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <h2 style='color: #FFA07A;'>Download ALL reactions from a Facebook post</h2>
-  <form method="post" action="{{ url_for('download_csv') }}" style="margin: 0 auto; width: 300px;">
-    <label for="post_url">Enter Facebook post URL</label>
-  </br>
-</br>
-    <input type="text" name="post_url" id="post_url" style="width: 100%;">
-</br>
-</br>
-    <input type="submit" value="Download CSV">
-  </form>
+
+<form method="post" action="{{ url_for('download_csv') }}" style="margin: 0 auto; width: 300px;">
+  <label for="post_url">Enter Facebook post URL</label>
+  <br>
+  <br>
+  <input type="text" name="post_url" id="post_url" style="width: 100%;">
+  <br>
+  <br>
+  <input type="submit" value="Download CSV" id="download-button">
+
+  <!-- Add the link element that triggers the download of the CSV file -->
+  <a id="download-link" href="/path/to/csv" style="display: none;"></a>
+</form>
+<div id="loading-indicator">
+  <img src="/static/images/loading2.gif" alt="Loading..." />
+</div>
+<style>
+  #loading-indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: rgba(255, 255, 255, 0.8);
+    display: none;
+  }
+  #loading-indicator img {
+    zoom: 4;
+  }
+  
+</style>
+<script>
+  function downloadCsv() {
+    // Show the loading indicator
+    document.querySelector('#loading-indicator').style.display = 'block';
+
+    // Get the link element that triggers the download of the CSV file
+    var link = document.querySelector('#download-link');
+
+    // Add an event listener for the "download" event on the link element
+    link.addEventListener('download', function() {
+      // Hide the loading gif when the CSV file is downloaded
+      document.querySelector('#loading-indicator').style.display = 'none';
+    });
+
+    // Trigger the download of the CSV file
+    link.click();
+  }
+  document.querySelector('#download-button').addEventListener('click', downloadCsv);
+</script>
+
 {% endblock %}

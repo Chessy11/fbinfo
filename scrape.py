@@ -8,8 +8,19 @@ import csv
 from flask import send_file
 from flask import make_response
 from dotenv import load_dotenv
+import facebook_scraper
 #import generate_csv_data
 import os
+import requests
+
+from http import cookiejar
+
+file = "/home/OffPower/Work/fblikescrper/facebook.com_cookies.txt"
+cookie = cookiejar.MozillaCookieJar(file)
+cookie.load(file)
+cookies = requests.utils.dict_from_cookiejar(cookie)
+facebook_scraper.set_cookies(cookies)
+
 
 app = Flask(__name__)
 
@@ -20,13 +31,8 @@ load_dotenv()
 # from util import Config
 
 #get string username and password from .env file
-username = os.getenv('USERNAME')
-password = os.getenv('PASSWORD')
+
 # print username path
-print(username)
-
-print(password)
-
 # for post in get_posts(credentials=(username, password), post_urls=["https://www.facebook.com/photo/?fbid=547120087428336&set=a.308441684629512"],    
 #                       options={ "reactors": 3000, 
 #                       "reactions": 3000, "timeout": 30, "progress": True,}):
@@ -45,7 +51,7 @@ def index():
 @app.route('/download_csv', methods=['POST'])
 def download_csv():
     post_url = request.form['post_url']
-    for post in get_posts(credentials=(username, password), post_urls=[post_url],    
+    for post in get_posts(post_urls=[post_url],    
                         options={"comments": True, "reactors": True, 
                         "reactions": True, "sharers": True, "timeout": 30, "shares": True, }):
         json_data = json.dumps(post, indent=4, sort_keys=True, default=str)

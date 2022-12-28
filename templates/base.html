@@ -4,6 +4,9 @@
     {% include 'navbar.html' %}
 
   <title>{% block title %}{% endblock %}</title>
+
+
+
   <style>
     body {
       background-color: #3b5998;
@@ -63,6 +66,15 @@
         color: #3b5998;
         padding: 20px;
       }
+      $('#loading').show();
+
+      // Make the request to download the CSV
+      $.post('/download_csv', { post_url: postUrl }, function(response) {
+        // Hide the loading indicator
+        $('#loading').hide();
+
+        // Do something with the response, such as triggering the download of the CSV
+      });
 
       
   </style>
