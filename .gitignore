@@ -7,3 +7,4 @@ extractor.ipynb
 geckodriver
 wrapper.ipynb
 .env
+.backup.py

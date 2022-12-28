@@ -52,8 +52,8 @@ def index():
 def download_csv():
     post_url = request.form['post_url']
     for post in get_posts(post_urls=[post_url],    
-                        options={"reactors": True, 
-                        "reactions": True,  "timeout": 30,}):
+                        options={"comments": True, "reactors": True, 
+                        "reactions": True, "sharers": True, "timeout": 30, "shares": True, }):
         json_data = json.dumps(post, indent=4, sort_keys=True, default=str)
         # save json to file
         with open('vs.json', 'w', encoding='utf-8') as f:
