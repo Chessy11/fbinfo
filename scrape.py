@@ -15,7 +15,7 @@ import requests
 
 from http import cookiejar
 
-file = "/home/OffPower/Work/fblikescrper/facebook.com_cookies.txt"
+file = "facebook.com_cookies.txt"
 cookie = cookiejar.MozillaCookieJar(file)
 cookie.load(file)
 cookies = requests.utils.dict_from_cookiejar(cookie)
